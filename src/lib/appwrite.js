@@ -1,10 +1,14 @@
-import { Client, Account, Databases } from "appwrite";
+import env from "@/env";
+import { Avatars, Client, Databases, Storage, Users } from "node-appwrite";
 
 const client = new Client()
-  .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT)
-  .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID);
+  .setEndpoint(env.appwrite.endpoint)
+  .setProject(env.appwrite.projectId)
+  .setKey(env.appwrite.apiKey);
 
-const account = new Account(client);
 const databases = new Databases(client);
+const avatars = new Avatars(client);
+const storage = new Storage(client);
+const users = new Users(client);
 
-export { client, account, databases };
+export { client, databases, avatars, storage, users };
