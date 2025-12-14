@@ -25,7 +25,7 @@ export const useAuthStore = create()(
         }
       },
 
-      async login(email, password) {
+      async login({ email, password }) {
         try {
           const session = await account.createEmailPasswordSession(
             email,
@@ -47,9 +47,14 @@ export const useAuthStore = create()(
         }
       },
 
-      async createAccount(name, email, password) {
+      async createAccount({ name, email, password }) {
         try {
-          const user = await account.create(ID.unique(), name, email, password);
+          console.log({
+            name,
+            email,
+            password,
+          });
+          const user = await account.create(ID.unique(), email, password, name);
           return { success: true };
         } catch (error) {
           console.log(error);

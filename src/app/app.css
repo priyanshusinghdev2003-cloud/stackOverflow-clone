@@ -128,12 +128,21 @@ summary::-webkit-details-marker {
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-black text-foreground;
+  }
+}
+
+
+@layer utilities {
+  .auth-card {
+    @apply bg-black rounded-lg shadow-md p-6 w-[400px] flex flex-col gap-4  outline-2 outline-white/40;
+  }
+  .btn-primary {
+    @apply bg-violet-500 text-white hover:bg-violet-600 cursor-pointer;
   }
 }
