@@ -1,7 +1,12 @@
+import { HeroParallaxCard } from "@/components/Products";
 import React from "react";
 
 function page() {
-  return <div>page</div>;
+  return (
+    <div>
+      <HeroParallaxCard />
+    </div>
+  );
 }
 
 export default page;

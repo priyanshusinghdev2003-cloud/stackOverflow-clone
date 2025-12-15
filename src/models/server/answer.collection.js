@@ -15,7 +15,6 @@ export default async function createAnswerCollection() {
 
   //create attributes
   await Promise.all([
-    databases.createStringAttribute(db, answerCollection, "title", 100, true),
     databases.createStringAttribute(
       db,
       answerCollection,
@@ -30,6 +29,7 @@ export default async function createAnswerCollection() {
       50,
       true,
     ),
+    databases.createNumberAttribute(db, answerCollection, "upvotes", true),
     databases.createStringAttribute(db, answerCollection, "authorId", 50, true),
   ]);
   console.log("Answer attributes created");
