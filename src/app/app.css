@@ -145,4 +145,33 @@ summary::-webkit-details-marker {
   .btn-primary {
     @apply bg-violet-500 text-white hover:bg-violet-600 cursor-pointer;
   }
+  
+  .card-animation {
+  position: relative;
+  border-radius: 12px;
+  background: #0c0c0c;
 }
+
+.card-animation::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  background: linear-gradient(270deg, #ff00cc, #3333ff, #00ffcc);
+  animation: borderAnim 2s linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+
+
+
+}
+
+
+

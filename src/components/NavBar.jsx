@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import {
   Menu,
@@ -10,12 +10,44 @@ import {
 } from "./ui/navbar-menu";
 import { useAuthStore } from "@/store/Auth";
 import { Button } from "./ui/button";
-
+import { gsap } from "gsap";
 function Navbar() {
   const [active, setActive] = useState(null);
   const { user, logout } = useAuthStore();
+  const [scrolled, setScrolled] = useState(0);
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    const scrollHandler = () => {
+      const scrollPosition = window.scrollY;
+      console.log(scrollPosition);
+      if (scrollPosition > scrolled) {
+        gsap.to(navRef.current, {
+          y: -200,
+          opacity: 0,
+          duration: 0.8,
+          ease: "easeInOut",
+        });
+      } else {
+        gsap.to(navRef.current, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "easeInOut",
+        });
+      }
+      setScrolled(scrollPosition);
+    };
+    window.addEventListener("scroll", scrollHandler);
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+    };
+  }, [scrolled]);
   return (
-    <div className={cn("fixed inset-x-0 top-10 z-50 mx-auto max-w-2xl")}>
+    <div
+      className={cn("fixed inset-x-0 top-10 z-50 mx-auto max-w-2xl")}
+      ref={navRef}
+    >
       <Menu setActive={setActive}>
         <HoveredLink href="/">Home</HoveredLink>
         <HoveredLink href="/ask-questions">Questions</HoveredLink>
