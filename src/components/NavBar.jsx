@@ -20,7 +20,7 @@ function Navbar() {
   useEffect(() => {
     const scrollHandler = () => {
       const scrollPosition = window.scrollY;
-      console.log(scrollPosition);
+
       if (scrollPosition > scrolled) {
         gsap.to(navRef.current, {
           y: -200,
@@ -50,7 +50,7 @@ function Navbar() {
     >
       <Menu setActive={setActive}>
         <HoveredLink href="/">Home</HoveredLink>
-        <HoveredLink href="/ask-questions">Questions</HoveredLink>
+        <HoveredLink href="/questions">Questions</HoveredLink>
         {user ? (
           <MenuItem setActive={setActive} active={active} item="Profile">
             <div className="flex flex-col space-y-4 text-sm">
